@@ -128,7 +128,7 @@ BOOTSTRAP3 = {
     'include_jquery': True,
     }
 cwd = os.getcwd()
-if cdw == '/app' or cwd[4:] == '/tmp':
+if cwd == '/app' or cwd[4:] == '/tmp':
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(default='postgres://localhost')
