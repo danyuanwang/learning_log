@@ -138,7 +138,7 @@ if cwd == '/app' or cwd[4:] == '/tmp':
     ALLOWED_HOSTS = ['*']
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = 'staticfiles'
+    STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static')
     )
