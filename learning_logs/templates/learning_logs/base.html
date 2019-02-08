@@ -24,7 +24,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="{% url 'learning_logs:topics' %}">Topics</a></li>
+            <li><a href="{% url 'learning_logs:topics' %}">Topics</a></li>
+            <li><a href="{% url 'learning_logs:project' %}">Current project</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}

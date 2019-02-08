@@ -28,6 +28,8 @@ urlpatterns = [
     #page for adding new entry
     path('new_entry/<int:topic_id>/', views.new_entry, name='new_entry'),
     #page for editing an entry
-    path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry')
+    path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
+    #page for users to see
+    path('project/', views.project, name='project')
 
 ]

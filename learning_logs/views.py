@@ -54,16 +54,22 @@ def new_entry(request, topic_id):
     return render(request, 'learning_logs/new_entry.html', context)
 @login_required
 def edit_entry(request, entry_id):
-    entry = Entry.objects.get(id= entry_id)
+    entry = Entry.objects.get(id=entry_id)
     topic= entry.topic
     if topic.owner != request.user:
         raise Http404
     if request.method != "POST":
         form =EntryForm(instance=entry)
     else:
-        form = EntryForm(instance=entry)
+        form = EntryForm(instance=entry, data=request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('learning_logs:logs:topic', args=[topic.id]))
+            return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
+
+def project(request):
+    topic = Topic.objects.get(id=6)
+    entries = topic.entry_set.order_by('-date_added')
+    context = {'topic': topic, 'entries': entries}
+    return render(request, 'learning_logs/project.html', context)
