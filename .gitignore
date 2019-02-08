@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 ll_env/
 __pycache__/
 *.sqlite3
-=======
-# Byte-compiled / optimized / DLL files
-__pycache__/
 *.py[cod]
 *$py.class
 
@@ -92,4 +88,3 @@ ENV/
 
 # Rope project settings
 .ropeproject
->>>>>>> e92b62be71db6bb8a5c6710f6e336c35a8b81677
