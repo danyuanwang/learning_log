@@ -25,7 +25,11 @@ SECRET_KEY = '+n$6@b@tj+#^6u)bfqs_!*)i*9k(p5ls5l7_r@)e1hva(1s*ex'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['xuanwugame.azurewebsites.net']
+ALLOWED_HOSTS = [
+    'xuanwugame.azurewebsites.net',
+    'danyuanwang.azurewebsites.net',
+    'danyuanwang.com'
+]
 
 
 # Application definition
