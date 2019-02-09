@@ -1,5 +1,5 @@
 @echo off
-set DBHOST=<host_name>
-set DBUSER=<your_user_name>
+set DBHOST=localhost
+set DBUSER=learning_log_db_admin
 set DBNAME=learning_logs
-set DBPASS=<your_password>
+set DBPASS=Snow0209
