@@ -23,12 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '+n$6@b@tj+#^6u)bfqs_!*)i*9k(p5ls5l7_r@)e1hva(1s*ex'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'xuanwugame.azurewebsites.net',
     'danyuanwang.azurewebsites.net',
-    'danyuanwang.com'
+    'danyuanwang.com',
+    'localhost'
 ]
 
 
@@ -84,8 +85,13 @@ WSGI_APPLICATION = 'learning_log.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DBNAME', ''),
+        'HOST': os.environ.get('DBHOST', 'localhost'),
+        'USER': os.environ.get('DBUSER', ''),
+        'PASSWORD': os.environ.get('DBPASS', '')
     }
 }
 
