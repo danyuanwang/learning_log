@@ -69,7 +69,7 @@ def edit_entry(request, entry_id):
     return render(request, 'learning_logs/edit_entry.html', context)
 
 def project(request):
-    topic = Topic.objects.get(id=6)
+    topic = Topic.objects.get(id=1)
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, 'entries': entries}
     return render(request, 'learning_logs/project.html', context)
