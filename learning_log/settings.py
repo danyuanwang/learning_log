@@ -29,7 +29,7 @@ ALLOWED_HOSTS = [
     'xuanwugame.azurewebsites.net',
     'danyuanwang.azurewebsites.net',
     'danyuanwang.com',
-    'Xuanwugame.com',
+    'xuanwugame.com',
     'localhost',
     '127.0.0.1'
 ]
