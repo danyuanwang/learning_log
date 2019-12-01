@@ -1,0 +1,1183 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.15
+-- Dumped by pg_dump version 11.5
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(30) NOT NULL,
+    last_name character varying(150) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.auth_user OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_groups OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE SEQUENCE public.auth_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE SEQUENCE public.auth_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_id_seq OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_user_permissions OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO xuanwu_db_admin;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO xuanwu_db_admin;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO xuanwu_db_admin;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO xuanwu_db_admin;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO xuanwu_db_admin;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO xuanwu_db_admin;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO xuanwu_db_admin;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO xuanwu_db_admin;
+
+--
+-- Name: learning_logs_entry; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.learning_logs_entry (
+    id integer NOT NULL,
+    text text NOT NULL,
+    date_added timestamp with time zone NOT NULL,
+    topic_id integer NOT NULL
+);
+
+
+ALTER TABLE public.learning_logs_entry OWNER TO xuanwu_db_admin;
+
+--
+-- Name: learning_logs_entry_id_seq; Type: SEQUENCE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE SEQUENCE public.learning_logs_entry_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.learning_logs_entry_id_seq OWNER TO xuanwu_db_admin;
+
+--
+-- Name: learning_logs_entry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER SEQUENCE public.learning_logs_entry_id_seq OWNED BY public.learning_logs_entry.id;
+
+
+--
+-- Name: learning_logs_topic; Type: TABLE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE TABLE public.learning_logs_topic (
+    id integer NOT NULL,
+    text character varying(200) NOT NULL,
+    date_added timestamp with time zone NOT NULL,
+    owner_id integer NOT NULL
+);
+
+
+ALTER TABLE public.learning_logs_topic OWNER TO xuanwu_db_admin;
+
+--
+-- Name: learning_logs_topic_id_seq; Type: SEQUENCE; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE SEQUENCE public.learning_logs_topic_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.learning_logs_topic_id_seq OWNER TO xuanwu_db_admin;
+
+--
+-- Name: learning_logs_topic_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER SEQUENCE public.learning_logs_topic_id_seq OWNED BY public.learning_logs_topic.id;
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: learning_logs_entry id; Type: DEFAULT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.learning_logs_entry ALTER COLUMN id SET DEFAULT nextval('public.learning_logs_entry_id_seq'::regclass);
+
+
+--
+-- Name: learning_logs_topic id; Type: DEFAULT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.learning_logs_topic ALTER COLUMN id SET DEFAULT nextval('public.learning_logs_topic_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add user	4	add_user
+14	Can change user	4	change_user
+15	Can delete user	4	delete_user
+16	Can view user	4	view_user
+17	Can add content type	5	add_contenttype
+18	Can change content type	5	change_contenttype
+19	Can delete content type	5	delete_contenttype
+20	Can view content type	5	view_contenttype
+21	Can add session	6	add_session
+22	Can change session	6	change_session
+23	Can delete session	6	delete_session
+24	Can view session	6	view_session
+25	Can add topic	7	add_topic
+26	Can change topic	7	change_topic
+27	Can delete topic	7	delete_topic
+28	Can view topic	7	view_topic
+29	Can add entry	8	add_entry
+30	Can change entry	8	change_entry
+31	Can delete entry	8	delete_entry
+32	Can view entry	8	view_entry
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+2	pbkdf2_sha256$120000$jIObyWHPQLyF$GcGFNGe4sZHb0F19/cftum7EEr753GtXk+/kYTqsf3M=	2019-02-09 17:41:42.559791+00	f	wzg				f	t	2019-02-09 17:41:40.183137+00
+4	pbkdf2_sha256$120000$JbxfiuAmp6BL$RiWBYZ7HS/CH+JYsK+6D7s/TCy3Uqy2BoHiT6KGvwgg=	2019-02-13 19:17:14.57027+00	f	danyuanwang				f	t	2019-02-13 19:16:43.64754+00
+3	pbkdf2_sha256$120000$LMz72u7cXiSO$oHLy3bNDvTfVrLnxOo1jrbTqMujA4CQ2MWhzhT7VWjg=	2019-04-13 17:24:16.118697+00	f	demiyan				f	t	2019-02-12 03:45:23.49439+00
+1	pbkdf2_sha256$120000$se7MnC5rx7if$E66JDAiX2Hunfn8V4ZyipEB0H2ZTZ0f6jQeeNL1SWvU=	2019-08-05 15:09:50.202187+00	t	ll_admin			danyuanwang@hotmail.com	t	t	2019-02-09 08:55:15.23088+00
+5	pbkdf2_sha256$120000$InvTFX8lePs6$FY8P+eEpZ42dppGx7rhqwIOKm3UbxQMq6pEhUsBq7Bs=	2019-08-06 16:31:48.820653+00	f	DanyuanWang				f	t	2019-04-19 02:43:33.184527+00
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	learning_logs	topic
+8	learning_logs	entry
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2019-02-09 08:53:50.609428+00
+2	auth	0001_initial	2019-02-09 08:53:55.918889+00
+3	admin	0001_initial	2019-02-09 08:53:57.190053+00
+4	admin	0002_logentry_remove_auto_add	2019-02-09 08:53:57.377265+00
+5	admin	0003_logentry_add_action_flag_choices	2019-02-09 08:53:57.622876+00
+6	contenttypes	0002_remove_content_type_name	2019-02-09 08:53:58.110124+00
+7	auth	0002_alter_permission_name_max_length	2019-02-09 08:53:58.425615+00
+8	auth	0003_alter_user_email_max_length	2019-02-09 08:53:58.737082+00
+9	auth	0004_alter_user_username_opts	2019-02-09 08:53:58.905949+00
+10	auth	0005_alter_user_last_login_null	2019-02-09 08:53:59.20998+00
+11	auth	0006_require_contenttypes_0002	2019-02-09 08:53:59.36324+00
+12	auth	0007_alter_validators_add_error_messages	2019-02-09 08:53:59.535031+00
+13	auth	0008_alter_user_username_max_length	2019-02-09 08:53:59.998408+00
+14	auth	0009_alter_user_last_name_max_length	2019-02-09 08:54:00.294879+00
+15	learning_logs	0001_initial	2019-02-09 08:54:00.771684+00
+16	learning_logs	0002_entry	2019-02-09 08:54:01.56133+00
+17	learning_logs	0003_topic_owner	2019-02-09 08:54:03.328661+00
+18	sessions	0001_initial	2019-02-09 08:54:04.374203+00
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+qpj3p5nvxqph1ttcxhdqzhoh8171dsz1	YjRlOWMwZjE5M2QxYzZiYjA2MDA4MWNmNzNiN2NmMjQ4NjVhNWVhNzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzYjlmY2M3MTZiZDM3Mzk3ZjA2N2RkODIyOTZjM2Y5NTZkMTRjMDJjIn0=	2019-02-23 08:55:34.316027+00
+sisc6f1i6s7gx8ymnw05frst5ltbvi9n	ODkxMmM0ZGFhYjg5YzlkMjk2YmFjYWFiZmMzOTkwMTlmNTdiZDhlOTp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhZmM0Y2EzYjZhYmE0N2I3ZTkwNmUxMzk0ZjNkNDIzYmEzN2U4YmVlIn0=	2019-02-23 17:41:42.579391+00
+j5bh7a0n0pq045wvfyl7qag4o3cbbd2m	YjRlOWMwZjE5M2QxYzZiYjA2MDA4MWNmNzNiN2NmMjQ4NjVhNWVhNzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzYjlmY2M3MTZiZDM3Mzk3ZjA2N2RkODIyOTZjM2Y5NTZkMTRjMDJjIn0=	2019-02-27 01:36:41.20512+00
+ri9vixeteo118e8ybph881ril9451mpg	ZDkzYTBmOTBiZTc2N2ZkNTU0OTE1ZmIwZGVhNDE2M2Y5OTRmMzAzMTp7Il9hdXRoX3VzZXJfaWQiOiI0IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlZmNjNzYwMDkzZDlmZDdlNGNiYzE1MTVjNWQxMGJmOWI5ZDkxMjBkIn0=	2019-02-27 19:17:11.341429+00
+578hu13h4ozydnjndqrfsj8c3b5akhqv	YjRlOWMwZjE5M2QxYzZiYjA2MDA4MWNmNzNiN2NmMjQ4NjVhNWVhNzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzYjlmY2M3MTZiZDM3Mzk3ZjA2N2RkODIyOTZjM2Y5NTZkMTRjMDJjIn0=	2019-02-27 20:54:10.957653+00
+2vezkcmonnzwqexjqnrq9bhffidhjzr7	YjRlOWMwZjE5M2QxYzZiYjA2MDA4MWNmNzNiN2NmMjQ4NjVhNWVhNzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIzYjlmY2M3MTZiZDM3Mzk3ZjA2N2RkODIyOTZjM2Y5NTZkMTRjMDJjIn0=	2019-03-14 05:38:35.773004+00
+8yv58776f0tkbdmbwspxzryjsxi6rs8t	MGE5M2ZiNzUzNDY4Nzc1YWI5ZTIxYWRjZjVjMjkzODNlZDhiMTJhYzp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIwNzYyY2RiZWE1NDFiZTAwYmU5NGEyZmFhNDk4MmY4MjkxYTk1YTAwIn0=	2019-04-27 17:24:16.370494+00
+5arqoomlhudy8erm1u4onuuj4zag4exr	Y2Q2NGI3MDQwOTRjNWFkNzQ1ZjA2OTJlYjRjMGU0OTcwOTllYjc3Njp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxMmE1ZmQ0MWQ5OTA4NTQ4ZGEwZjFhMWIxNzExMGJiODZkMzY0NjczIn0=	2019-05-03 02:43:36.204916+00
+fc93kaplo2cdla1evsfnlezg08l8bm2u	Y2Q2NGI3MDQwOTRjNWFkNzQ1ZjA2OTJlYjRjMGU0OTcwOTllYjc3Njp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxMmE1ZmQ0MWQ5OTA4NTQ4ZGEwZjFhMWIxNzExMGJiODZkMzY0NjczIn0=	2019-05-22 04:20:39.409065+00
+4lexf3jtqc8or9fbr3pbh12l5o3e8jr0	Y2Q2NGI3MDQwOTRjNWFkNzQ1ZjA2OTJlYjRjMGU0OTcwOTllYjc3Njp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxMmE1ZmQ0MWQ5OTA4NTQ4ZGEwZjFhMWIxNzExMGJiODZkMzY0NjczIn0=	2019-06-07 04:52:17.289472+00
+23dko71wuafb38ojg4bvai9n8rrqp3ua	Y2Q2NGI3MDQwOTRjNWFkNzQ1ZjA2OTJlYjRjMGU0OTcwOTllYjc3Njp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxMmE1ZmQ0MWQ5OTA4NTQ4ZGEwZjFhMWIxNzExMGJiODZkMzY0NjczIn0=	2019-06-07 04:52:18.411311+00
+69braz2utueh9wdegh85bvplybb5zxny	Y2Q2NGI3MDQwOTRjNWFkNzQ1ZjA2OTJlYjRjMGU0OTcwOTllYjc3Njp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxMmE1ZmQ0MWQ5OTA4NTQ4ZGEwZjFhMWIxNzExMGJiODZkMzY0NjczIn0=	2019-06-24 04:51:59.024773+00
+nita9718djtreehyvjuq5j00qh2f8xdr	Y2Q2NGI3MDQwOTRjNWFkNzQ1ZjA2OTJlYjRjMGU0OTcwOTllYjc3Njp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxMmE1ZmQ0MWQ5OTA4NTQ4ZGEwZjFhMWIxNzExMGJiODZkMzY0NjczIn0=	2019-06-24 04:52:00.293239+00
+3g53qzrssvgiq0wnawov48cvksjivgpj	Y2Q2NGI3MDQwOTRjNWFkNzQ1ZjA2OTJlYjRjMGU0OTcwOTllYjc3Njp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxMmE1ZmQ0MWQ5OTA4NTQ4ZGEwZjFhMWIxNzExMGJiODZkMzY0NjczIn0=	2019-06-24 04:52:01.440571+00
+v10itrmc0rxuz2d2jw1hj52qp5132d2r	Y2Q2NGI3MDQwOTRjNWFkNzQ1ZjA2OTJlYjRjMGU0OTcwOTllYjc3Njp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxMmE1ZmQ0MWQ5OTA4NTQ4ZGEwZjFhMWIxNzExMGJiODZkMzY0NjczIn0=	2019-07-09 04:52:47.985283+00
+gy8z0be8mtezp0uafs36zo4z0um1879z	Y2Q2NGI3MDQwOTRjNWFkNzQ1ZjA2OTJlYjRjMGU0OTcwOTllYjc3Njp7Il9hdXRoX3VzZXJfaWQiOiI1IiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxMmE1ZmQ0MWQ5OTA4NTQ4ZGEwZjFhMWIxNzExMGJiODZkMzY0NjczIn0=	2019-08-20 16:31:48.997469+00
+\.
+
+
+--
+-- Data for Name: learning_logs_entry; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.learning_logs_entry (id, text, date_added, topic_id) FROM stdin;
+1	install pygame, pip python, set up git, and django	2019-02-10 02:25:03.230211+00	1
+2	draw a grid for a map with the function pygame.draw.rect(the thing you want to draw it on(the screen), the color of the rect, and ,[ the x value of top corner, y value of top corner, the width, the length]	2019-02-10 02:29:08.33557+00	1
+3	draw a row with a for loop\r\nfor x in range(y, z)\r\nthis repeats the following z-y times and x takes on the value the current run.\r\nrepeat the draw box and change the coordinates	2019-02-10 02:29:09.168388+00	1
+8	this is what you should have right now\r\n\r\nimport pygame\r\nimport settings\r\nclass Board():\r\n#    def __init__(self):\r\n\r\n\r\n\r\n    def draw_board(self):\r\n        BLACK = (0, 0, 0)\r\n        WHITE = (255, 255, 255)\r\n        GREEN_L = (0, 255, 0)\r\n        GREEN_D = (0, 105, 0)\r\n        RED = (255, 0, 0)\r\n        BLUE = (0, 255, 255)\r\n        GREY = (105, 105, 105)\r\n        BLUE_D = (0, 0, 128)\r\n        BLUE_L = (176, 196, 222)\r\n\r\n        GRASS = 1\r\n        MOUNTAIN = 2\r\n        ICE = 3\r\n        FOREST = 4\r\n        RIVER = 5\r\n        WATER = 6\r\n        tiles = [\r\n            [WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER,WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER,WATER, WATER, WATER, WATER, WATER, WATER, WATER, ICE],\r\n            [WATER, WATER, WATER, WATER, WATER, MOUNTAIN, MOUNTAIN, FOREST, FOREST, FOREST, RIVER, FOREST, FOREST, WATER, WATER, WATER, WATER, ICE, WATER, ICE],\r\n            [WATER, WATER, MOUNTAIN, ICE, WATER, WATER, GRASS, MOUNTAIN, FOREST, FOREST, RIVER, RIVER, FOREST, FOREST, WATER, WATER, WATER, ICE, WATER, WATER],\r\n            [WATER, WATER, MOUNTAIN, WATER, WATER, WATER, GRASS, MOUNTAIN, FOREST, FOREST, FOREST, RIVER, RIVER, FOREST, ICE, WATER, ICE,ICE, WATER, WATER],\r\n            [WATER, WATER, MOUNTAIN, WATER, WATER, WATER, GRASS, MOUNTAIN, FOREST, FOREST, FOREST, RIVER, RIVER, ICE, ICE, ICE, ICE, ICE, WATER, WATER],\r\n            [WATER, WATER, ICE, MOUNTAIN, ICE, MOUNTAIN, MOUNTAIN, FOREST, FOREST, FOREST, FOREST, FOREST, RIVER, ICE, ICE, ICE, ICE, ICE, WATER, WATER],\r\n            [WATER, WATER, WATER, ICE, ICE, MOUNTAIN, MOUNTAIN, FOREST, FOREST, FOREST, GRASS, FOREST, RIVER, RIVER, ICE, ICE, ICE, ICE, WATER, WATER],\r\n            [WATER, WATER, WATER, GRASS, MOUNTAIN, MOUNTAIN, FOREST, FOREST, FOREST, FOREST, GRASS, GRASS, GRASS, RIVER, GRASS, ICE, ICE, ICE, WATER, WATER],\r\n            [WATER, WATER, WATER, ICE, ICE, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, RIVER, RIVER, RIVER, RIVER, WATER, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, ICE, MOUNTAIN, MOUNTAIN, GRASS, GRASS, GRASS, GRASS, GRASS, RIVER, RIVER, GRASS, GRASS,  WATER, WATER, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, ICE, MOUNTAIN, MOUNTAIN, GRASS, GRASS, GRASS, RIVER, RIVER, GRASS, GRASS, WATER, WATER, WATER, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, MOUNTAIN, ICE, MOUNTAIN, GRASS, GRASS, GRASS, RIVER, GRASS, MOUNTAIN, MOUNTAIN, WATER, WATER, ICE, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, WATER, MOUNTAIN, MOUNTAIN, MOUNTAIN, GRASS, GRASS, RIVER, MOUNTAIN, MOUNTAIN, WATER, WATER, WATER, ICE, ICE, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, WATER, WATER, MOUNTAIN, MOUNTAIN, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER,WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER]\r\n        ]\r\n        Tile_Color = {\r\n            GRASS: GREEN_L,\r\n            MOUNTAIN: GREY,\r\n            ICE: BLUE_L,\r\n            FOREST: GREEN_D,\r\n            RIVER: BLUE,\r\n            WATER: BLUE_D\r\n        }\r\n\r\n        width = 50\r\n        height = 50\r\n        screen = pygame.display.set_mode(settings.screen_size)\r\n        screen.fill(WHITE)\r\n        plus_amount = 10\r\n        row_height = 7\r\n        for row in range(16):\r\n            for column in range(20):\r\n                pygame.draw.rect(screen, Tile_Color[tiles[row][column]], [(column * 50) + plus_amount, row_height, width, height])\r\n                plus_amount += 1\r\n            plus_amount = 10\r\n            row_height += 51	2019-02-10 22:32:49.459716+00	1
+5	some basic commands in python that we might use are\r\nprint()\r\nprints something can print variables\r\nother wise must have " " around what you want to print\r\n\r\n\r\nfor loops\r\nrepeats something for a certain amount of times\r\nfor I in range()\r\n\r\n\r\nif, elif and else\r\n\r\nif decides if something is true and then acts accordingly\r\nan elif will not run if the if in front of it is true\r\nyou can have infinite elifs in one if then statement\r\nelse runs when nothing else is true\r\n\r\nif x:\r\n    print y\r\nelif x: \r\n    print x\r\nelse:\r\n   print z\r\n\r\n\r\nwhile loops \r\nrepeats something while a condition is true.	2019-02-10 02:42:34.377803+00	1
+4	draw a grid by repeating the draw row loop. this is called nesting\r\n\r\nthis is the code\r\n\r\n screen.fill(BLACK)\r\n    plus_amount = 5\r\n    row_height = 5\r\n    for row in range(1, 11):\r\n        for column in range(1, 11):\r\n           pygame.draw.rect(screen, WHITE, [((column - 1) * 20) + plus_amount, row_height, width, height])\r\n            plus_amount += 5\r\n        plus_amount = 5\r\n        row_height += 25\r\nnote: replace the white with (255,255,255)\r\nand black with (0, 0, 0)\r\n= is not equal it only defines a variable.\r\n+= is incrementing\r\nit adds\r\nbasically x = x+y\r\nit redefines x and increases it by y	2019-02-10 02:33:43.857444+00	1
+9	now create a new python file and make an infinite while loop in it.\r\n\r\nlike so\r\n while True:\r\n\r\n\r\nunder it put the function after you import it from the board file\r\n using from board import Board\r\n\r\n this is the code:\r\nimport pygame\r\nfrom board import Board\r\nimport settings\r\nimport check_events\r\ndef run_game():\r\n    pygame.init()\r\n    board = Board()\r\n    screen = pygame.display.set_mode((1200, 800))\r\n\r\n    pygame.display.set_caption("xuanwu game")\r\n    while True:\r\n        check_events.exit_check()\r\n        board.draw_board()\r\n        pygame.display.flip()\r\nrun_game()	2019-02-10 22:36:06.94877+00	1
+10	make sure the two files are under one folder or else it will not work. python groups the files together into one project.	2019-02-10 22:37:39.355005+00	1
+7	you can also change the colors\r\nall the code you have right now into a function inside a class.\r\nlike so\r\n\r\nclass Board():\r\n     def draw_board():\r\n\r\n            #insert code here\r\n\r\n\r\nnote # is a comment it will not run in a program	2019-02-10 22:29:32.467081+00	1
+6	color the c=block using a list and a dictionary\r\n        BLACK = (0, 0, 0)\r\n        WHITE = (255, 255, 255)\r\n        GREEN_L = (0, 255, 0)\r\n        GREEN_D = (0, 50, 0)\r\n        RED = (255, 0, 0)\r\n        BLUE = (0, 255, 255)\r\n        GREY = (105, 105, 105)\r\n        BLUE_D = (0, 0, 128)\r\n        BLUE_L = (176, 196, 222)\r\n\r\n        GRASS = 1\r\n        MOUNTAIN = 2\r\n        ICE = 3\r\n        FOREST = 4\r\n        RIVER = 5\r\n        WATER = 6\r\n        tiles = [\r\n            [WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER,WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER,WATER, WATER, WATER, WATER, WATER, WATER, WATER, ICE],\r\n            [WATER, WATER, WATER, WATER, WATER, MOUNTAIN, MOUNTAIN, FOREST, FOREST, FOREST, RIVER, FOREST, FOREST, WATER, WATER, WATER, WATER, ICE, WATER, ICE],\r\n            [WATER, WATER, MOUNTAIN, ICE, WATER, WATER, GRASS, MOUNTAIN, FOREST, FOREST, RIVER, RIVER, FOREST, FOREST, WATER, WATER, WATER, ICE, WATER, WATER],\r\n            [WATER, WATER, MOUNTAIN, WATER, WATER, WATER, GRASS, MOUNTAIN, FOREST, FOREST, FOREST, RIVER, RIVER, FOREST, ICE, WATER, ICE,ICE, WATER, WATER],\r\n            [WATER, WATER, MOUNTAIN, WATER, WATER, WATER, GRASS, MOUNTAIN, FOREST, FOREST, FOREST, RIVER, RIVER, ICE, ICE, ICE, ICE, ICE, WATER, WATER],\r\n            [WATER, WATER, ICE, MOUNTAIN, ICE, MOUNTAIN, MOUNTAIN, FOREST, FOREST, FOREST, FOREST, FOREST, RIVER, ICE, ICE, ICE, ICE, ICE, WATER, WATER],\r\n            [WATER, WATER, WATER, ICE, ICE, MOUNTAIN, MOUNTAIN, FOREST, FOREST, FOREST, GRASS, FOREST, RIVER, RIVER, ICE, ICE, ICE, ICE, WATER, WATER],\r\n            [WATER, WATER, WATER, GRASS, MOUNTAIN, MOUNTAIN, FOREST, FOREST, FOREST, FOREST, GRASS, GRASS, GRASS, RIVER, GRASS, ICE, ICE, ICE, WATER, WATER],\r\n            [WATER, WATER, WATER, ICE, ICE, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, RIVER, RIVER, RIVER, RIVER, WATER, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, ICE, MOUNTAIN, MOUNTAIN, GRASS, GRASS, GRASS, GRASS, GRASS, RIVER, RIVER, GRASS, GRASS,  WATER, WATER, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, ICE, MOUNTAIN, MOUNTAIN, GRASS, GRASS, GRASS, RIVER, RIVER, GRASS, GRASS, WATER, WATER, WATER, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, MOUNTAIN, ICE, MOUNTAIN, GRASS, GRASS, GRASS, RIVER, GRASS, MOUNTAIN, MOUNTAIN, WATER, WATER, ICE, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, WATER, MOUNTAIN, MOUNTAIN, MOUNTAIN, GRASS, GRASS, RIVER, MOUNTAIN, MOUNTAIN, WATER, WATER, WATER, ICE, ICE, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, WATER, WATER, MOUNTAIN, MOUNTAIN, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER],\r\n            [WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER,WATER, WATER, WATER, WATER, WATER, WATER, WATER, WATER]\r\n        ]\r\n        Tile_Color = {\r\n            GRASS: GREEN_L,\r\n            MOUNTAIN: GREY,\r\n            ICE: BLUE_L,\r\n            FOREST: GREEN_D,\r\n            RIVER: BLUE,\r\n            WATER: BLUE_D\r\n        }\r\n\r\nnote: feel free to change the map. you can change the color or what is in the list.	2019-02-10 22:17:15.110513+00	1
+11	add a new file called\r\nmap cells\r\nwe will define some properties for the cells there	2019-02-11 23:31:45.159381+00	1
+12	find a way to make a cell class and import it in the board file\r\nthen make instances of the class.	2019-02-11 23:56:30.042929+00	1
+13	this should be the code\r\nfrom random import randint\r\nclass Cell():\r\n    def __init__(self, cell_type):\r\n        GRASS = 1\r\n        MOUNTAIN = 2\r\n        ICE = 3\r\n        FOREST = 4\r\n        RIVER = 5\r\n        WATER = 6\r\n        self.cell_type = cell_type\r\n        if self.cell_type == GRASS:\r\n            self.height = 1\r\n            self.EnergyNeeded = 1\r\n        if self.cell_type == MOUNTAIN:\r\n            self.height = 2\r\n            self.EnergyNeeded = 2\r\n        if self.cell_type == ICE:\r\n            self.height = 1\r\n            self.EnergyNeeded = 1\r\n        if self.cell_type == FOREST:\r\n            self. height = 1\r\n            self.EnergyNeeded = randint(1, 3)\r\n        if self.cell_type == RIVER:\r\n            self.height = 0\r\n            self. EnergyNeeded = 2\r\n        if self.cell_type == WATER:\r\n            self.height = 0\r\n            self. EnergyNeeded = 20\r\n    def return_value(self):\r\n        return self.height\r\n        return self.EnergyNeeded\r\n    def set_corrdinator(self, i, j):\r\n        self.x = 50* i + i\r\n        self.y = 50* j + j	2019-02-11 23:56:46.219896+00	1
+14	then in board.py make instances of the code\r\n\r\n\r\nchange \r\n\r\nGRASS = 1\r\n        MOUNTAIN = 2\r\n        ICE = 3\r\n        FOREST = 4\r\n        RIVER = 5\r\n        WATER = 6\r\n\r\ninto\r\nGRASS = Cell(1)\r\n        MOUNTAIN = Cell(2)\r\n        ICE = Cell(3)\r\n        FOREST = Cell(4)\r\n        RIVER = Cell(5)\r\n        WATER = Cell(6)	2019-02-12 03:40:28.317492+00	1
+15	record the coordinates of the cells \r\n   Tile_Color = {\r\n            GRASS: GREEN_L,\r\n            MOUNTAIN: GREY,\r\n            ICE: BLUE_L,\r\n            FOREST: GREEN_D,\r\n            RIVER: BLUE,\r\n            WATER: BLUE_D\r\n        }\r\n        for i in range(len(tiles)):\r\n            for j in range(len(tiles[i])):\r\n               tiles[i][j].set_corrdinator(i, j)	2019-02-13 01:38:25.570442+00	1
+16	add a new file  named mines\r\nuse this to make mines make a class and three child classes that inherit from the parent.\r\nthis is the code\r\nfrom constants import CellType, MineType\r\n\r\n\r\nclass Mine:\r\n    def __init__(self, miners_allowed):\r\n        self.miners_allowed = miners_allowed\r\n        self.cell = None\r\n\r\n    def attach_to_cell(self, cell):\r\n        self.cell = cell\r\n\r\n    @classmethod\r\n    def create_instance(cls, cell, mine_type):\r\n        if cell.cell_type == CellType.MOUNTAIN:\r\n            if mine_type == MineType.STONE_MINE:\r\n                mine = Stone_Mine()\r\n                mine.attach_to_cell(cell)\r\n            elif mine_type == MineType.IRON_MINE:\r\n                mine = Iron_Mine()\r\n                mine.attach_to_cell(cell)\r\n            elif mine_type == MineType.DIAMOND_MINE:\r\n                mine = Diamond_Mine()\r\n                mine.attach_to_cell(cell)\r\n            return mine\r\n        return None\r\n\r\n\r\nclass Stone_Mine(Mine):\r\n    def __init__(self):\r\n        Mine.__init__(self, miners_allowed=3)\r\n\r\n\r\nclass Iron_Mine(Mine):\r\n    def __init__(self):\r\n        Mine.__init__(self, miners_allowed=3)\r\n\r\n\r\nclass Diamond_Mine(Mine):\r\n    def __init__(self):\r\n        Mine.__init__(self, miners_allowed=3)	2019-02-20 04:53:26.044506+00	1
+17	also add a constants file and modify the settings\r\nconstants.py\r\nfrom enum import Enum\r\n\r\nclass CellType(Enum):\r\n    GRASS = 1,\r\n    MOUNTAIN = 2,\r\n    ICE = 3,\r\n    FOREST = 4,\r\n    RIVER = 5,\r\n    WATER = 6,\r\n\r\nclass MineType(Enum):\r\n    STONE_MINE = 1,\r\n    IRON_MINE = 2,\r\n    DIAMOND_MINE = 3,\r\n\r\n\r\nclass Color:\r\n    BLACK = (0, 0, 0)\r\n    WHITE = (255, 255, 255)\r\n    GREEN_L = (0, 255, 0)\r\n    GREEN_D = (0, 105, 0)\r\n    RED = (255, 0, 0)\r\n    BLUE = (0, 255, 255)\r\n    GREY = (105, 105, 105)\r\n    BLUE_D = (0, 0, 128)\r\n    BLUE_L = (176, 196, 222)\r\n\r\n\r\nTile_Color = {\r\n    CellType.GRASS: Color.GREEN_L,\r\n    CellType.MOUNTAIN: Color.GREY,\r\n    CellType.ICE: Color.BLUE_L,\r\n    CellType.FOREST: Color.GREEN_D,\r\n    CellType.RIVER: Color.BLUE,\r\n    CellType.WATER: Color.BLUE_D\r\n    }\r\nsettings.py\r\n#rgb\r\nbg_color = (230, 230, 230)\r\n\r\n#x, y\r\nscreen_size = (1200, 830)\r\n\r\n#width, height , x_margin, y_margin\r\ncell_size = (50, 50, 1, 1)\r\n\r\n#i, j , i_margin, j_margin\r\nboard_dimension = (20, 16, 10, 10)\r\n#mine numbers,\r\n#stone\r\nstone_mine_number = (1,3)\r\n#iron\r\niron_mine_number = (1, 3)\r\n#diamond\r\ndiamond_mine_number = (1, 1)	2019-02-20 04:55:02.092718+00	1
+18	to make the mines I had to change up map.py\r\nmap.py\r\nimport pygame\r\nimport settings\r\nfrom constants import CellType\r\nfrom Map_cells import Cell\r\nfrom constants import Color\r\nfrom mapdata import MapData\r\nfrom mines import Mine\r\nfrom random import randint\r\nfrom constants import MineType\r\n\r\nclass Map:\r\n    stone_mines_limit = randint(settings.stone_mine_number[0], settings.stone_mine_number[1])\r\n    iron_mines_limit = randint(settings.iron_mine_number[0], settings.iron_mine_number[1])\r\n    diamond_mines_limit = randint(settings.diamond_mine_number[0], settings.diamond_mine_number[1])\r\n    stone_mines_list = []\r\n    iron_mines_list = []\r\n    diamond_mines_list = []\r\n\r\n    def __init__(self, x_dimension, y_dimension, x_margin, y_margin):\r\n        self.x_dimension = x_dimension\r\n        self.y_dimension = y_dimension\r\n        self.x_margin = x_margin\r\n        self.y_margin = y_margin\r\n\r\n        self.tiles = [[i_row * j_column for j_column in range(self.x_dimension)]for i_row in range(self.y_dimension)]\r\n        self.mountains_list = []\r\n        for i_row in range(len(self.tiles)):\r\n            for j_column in range(len(self.tiles[i_row])):\r\n                #print("map_normal dimension:", len(MapData.map_normal), "tiles dimension:", len(self.tiles), len(self.tiles[i_row]), "x_dimension:", x_dimension, "y_dimension:",y_dimension, "i:",i_row,"j:",j_column)\r\n                self.tiles[i_row][j_column] = \\\r\n                    Cell.create_instance(\r\n                        MapData.map_normal[i_row][j_column],\r\n                        i_row, j_column, self.x_margin, self.y_margin)\r\n                cell = self.tiles[i_row][j_column]\r\n\r\n                if cell.cell_type == CellType.MOUNTAIN:\r\n                    self.mountains_list.append(cell)\r\n                print("cell", cell.cell_type)\r\n        for i in range(Map.stone_mines_limit + Map.iron_mines_limit + Map.diamond_mines_limit):\r\n            index_mountain = randint(0, len(self.mountains_list)-1)\r\n            selected_mountain_cell = self.mountains_list[index_mountain]\r\n            if len(Map.stone_mines_list) < Map.stone_mines_limit:\r\n                mine = Mine.create_instance(selected_mountain_cell, MineType.STONE_MINE)\r\n                if mine is not None:\r\n                    Map.stone_mines_list.append(mine)\r\n            if len(Map.iron_mines_list) < Map.iron_mines_limit:\r\n                mine = Mine.create_instance(selected_mountain_cell, MineType.IRON_MINE)\r\n                if mine is not None:\r\n                    Map.iron_mines_list.append(mine)\r\n            if len(Map.diamond_mines_list) < Map.diamond_mines_limit:\r\n                mine = Mine.create_instance(selected_mountain_cell, MineType.DIAMOND_MINE)\r\n                if mine is not None:\r\n                    Map.diamond_mines_list.append(mine)\r\n\r\n        print("stone mines", Map.stone_mines_list, Map.stone_mines_limit)\r\n        print("iron mines", Map.iron_mines_list, Map.iron_mines_limit)\r\n        print("diamond mines", Map.diamond_mines_list, Map.diamond_mines_limit)\r\n\r\nnote: this is only the __init__ function of the class\r\nwe didn't touch anything else	2019-02-20 04:57:41.150579+00	1
+19	we added a draw function to mines.py\r\nmines.py\r\nfrom pygame.sprite import Sprite\r\nfrom constants import CellType, MineType\r\nimport pygame\r\n\r\nclass Mine(Sprite):\r\n    def __init__(self, miners_allowed):\r\n        super(Mine, self).__init__()\r\n        self.miners_allowed = miners_allowed\r\n        self.cell = None\r\n        self.image = None\r\n        self.image_rect = None\r\n\r\n    def draw(self, rect):\r\n        while False:\r\n            return None\r\n\r\n    @classmethod\r\n    def create_instance(cls, cell, mine_type):\r\n        if cell.cell_type == CellType.MOUNTAIN:\r\n            if mine_type == MineType.STONE_MINE:\r\n                mine = StoneMine()\r\n                cell.set_mine(mine)\r\n            elif mine_type == MineType.IRON_MINE:\r\n                mine = IronMine()\r\n                cell.set_mine(mine)\r\n            elif mine_type == MineType.DIAMOND_MINE:\r\n                mine = DiamondMine()\r\n                cell.set_mine(mine)\r\n            return mine\r\n        return None\r\n\r\n\r\nclass StoneMine(Mine):\r\n    def __init__(self):\r\n        Mine.__init__(self, miners_allowed=3)\r\n\r\n    def draw(self, rect):\r\n        self.image = pygame.image.load('icons_and_pictures/stone_mine.PNG')\r\n        self.image_rect = self.image.get_rect()\r\n        rect_centerx = rect[0] + (rect[2] / 2)\r\n        rect_centery = rect[1] + (rect[3] / 2)\r\n        self.image_rect.centerx = rect_centerx\r\n        self.image_rect.centery = rect_centery\r\n\r\n\r\nclass IronMine(Mine):\r\n    def __init__(self):\r\n        Mine.__init__(self, miners_allowed=3)\r\n\r\n    def draw(self, rect):\r\n        self.image = pygame.image.load('icons_and_pictures/iron_mine.PNG')\r\n        self.image_rect = self.image.get_rect()\r\n        rect_centerx = rect[0] + (rect[2]/2)\r\n        rect_centery = rect[1] + (rect[3]/2)\r\n        self.image_rect.centerx = rect_centerx\r\n        self.image_rect.centery = rect_centery\r\n\r\n\r\nclass DiamondMine(Mine):\r\n    def __init__(self):\r\n        Mine.__init__(self, miners_allowed=3)\r\n\r\n    def draw(self, rect):\r\n        self.image = pygame.image.load('icons_and_pictures/diamond_mine.PNG')\r\n        self.image_rect = self.image.get_rect()\r\n        rect_centerx = rect[0] + (rect[2] / 2)\r\n        rect_centery = rect[1] + (rect[3] / 2)\r\n        self.image_rect.centerx = rect_centerx\r\n        self.image_rect.centery = rect_centery	2019-02-21 05:24:20.828812+00	1
+20	we added a draw function to mines.py\r\nmines.py\r\nfrom pygame.sprite import Sprite\r\nfrom constants import CellType, MineType\r\nimport pygame\r\n\r\nclass Mine(Sprite):\r\n    def __init__(self, miners_allowed):\r\n        super(Mine, self).__init__()\r\n        self.miners_allowed = miners_allowed\r\n        self.cell = None\r\n        self.image = None\r\n        self.image_rect = None\r\n\r\n    def draw(self, rect):\r\n        while False:\r\n            return None\r\n\r\n    @classmethod\r\n    def create_instance(cls, cell, mine_type):\r\n        if cell.cell_type == CellType.MOUNTAIN:\r\n            if mine_type == MineType.STONE_MINE:\r\n                mine = StoneMine()\r\n                cell.set_mine(mine)\r\n            elif mine_type == MineType.IRON_MINE:\r\n                mine = IronMine()\r\n                cell.set_mine(mine)\r\n            elif mine_type == MineType.DIAMOND_MINE:\r\n                mine = DiamondMine()\r\n                cell.set_mine(mine)\r\n            return mine\r\n        return None\r\n\r\n\r\nclass StoneMine(Mine):\r\n    def __init__(self):\r\n        Mine.__init__(self, miners_allowed=3)\r\n\r\n    def draw(self, rect):\r\n        self.image = pygame.image.load('icons_and_pictures/stone_mine.PNG')\r\n        self.image_rect = self.image.get_rect()\r\n        rect_centerx = rect[0] + (rect[2] / 2)\r\n        rect_centery = rect[1] + (rect[3] / 2)\r\n        self.image_rect.centerx = rect_centerx\r\n        self.image_rect.centery = rect_centery\r\n\r\n\r\nclass IronMine(Mine):\r\n    def __init__(self):\r\n        Mine.__init__(self, miners_allowed=3)\r\n\r\n    def draw(self, rect):\r\n        self.image = pygame.image.load('icons_and_pictures/iron_mine.PNG')\r\n        self.image_rect = self.image.get_rect()\r\n        rect_centerx = rect[0] + (rect[2]/2)\r\n        rect_centery = rect[1] + (rect[3]/2)\r\n        self.image_rect.centerx = rect_centerx\r\n        self.image_rect.centery = rect_centery\r\n\r\n\r\nclass DiamondMine(Mine):\r\n    def __init__(self):\r\n        Mine.__init__(self, miners_allowed=3)\r\n\r\n    def draw(self, rect):\r\n        self.image = pygame.image.load('icons_and_pictures/diamond_mine.PNG')\r\n        self.image_rect = self.image.get_rect()\r\n        rect_centerx = rect[0] + (rect[2] / 2)\r\n        rect_centery = rect[1] + (rect[3] / 2)\r\n        self.image_rect.centerx = rect_centerx\r\n        self.image_rect.centery = rect_centery	2019-02-21 05:24:23.344308+00	1
+21	this is map.py\r\n\r\nimport pygame\r\nimport settings\r\nfrom constants import CellType\r\nfrom Map_cells import Cell\r\nfrom constants import Color\r\nfrom mapdata import MapData\r\nfrom mines import Mine\r\nfrom random import randint\r\nfrom constants import MineType\r\n\r\nclass Map:\r\n    stone_mines_limit = randint(settings.stone_mine_number[0], settings.stone_mine_number[1])\r\n    iron_mines_limit = randint(settings.iron_mine_number[0], settings.iron_mine_number[1])\r\n    diamond_mines_limit = randint(settings.diamond_mine_number[0], settings.diamond_mine_number[1])\r\n    stone_mines_list = []\r\n    iron_mines_list = []\r\n    diamond_mines_list = []\r\n\r\n    def __init__(self, x_dimension, y_dimension, x_margin, y_margin):\r\n        self.x_dimension = x_dimension\r\n        self.y_dimension = y_dimension\r\n        self.x_margin = x_margin\r\n        self.y_margin = y_margin\r\n\r\n        self.tiles = [[i_row * j_column for j_column in range(self.x_dimension)]for i_row in range(self.y_dimension)]\r\n        self.mountains_list = []\r\n        for i_row in range(len(self.tiles)):\r\n            for j_column in range(len(self.tiles[i_row])):\r\n                #print("map_normal dimension:", len(MapData.map_normal), "tiles dimension:", len(self.tiles), len(self.tiles[i_row]), "x_dimension:", x_dimension, "y_dimension:",y_dimension, "i:",i_row,"j:",j_column)\r\n                self.tiles[i_row][j_column] = \\\r\n                    Cell.create_instance(\r\n                        MapData.map_normal[i_row][j_column],\r\n                        i_row, j_column, self.x_margin, self.y_margin)\r\n                cell = self.tiles[i_row][j_column]\r\n\r\n                if cell.cell_type == CellType.MOUNTAIN:\r\n                    self.mountains_list.append(cell)\r\n                print("cell", cell.cell_type)\r\n        for i in range(Map.stone_mines_limit + Map.iron_mines_limit + Map.diamond_mines_limit):\r\n            index_mountain = randint(0, len(self.mountains_list)-1)\r\n            selected_mountain_cell = self.mountains_list[index_mountain]\r\n            if len(Map.stone_mines_list) < Map.stone_mines_limit:\r\n                mine = Mine.create_instance(selected_mountain_cell, MineType.STONE_MINE)\r\n                if mine is not None:\r\n                    Map.stone_mines_list.append(mine)\r\n            if len(Map.iron_mines_list) < Map.iron_mines_limit:\r\n                mine = Mine.create_instance(selected_mountain_cell, MineType.IRON_MINE)\r\n                if mine is not None:\r\n                    Map.iron_mines_list.append(mine)\r\n            if len(Map.diamond_mines_list) < Map.diamond_mines_limit:\r\n                mine = Mine.create_instance(selected_mountain_cell, MineType.DIAMOND_MINE)\r\n                if mine is not None:\r\n                    Map.diamond_mines_list.append(mine)\r\n\r\n        #print("stone mines", Map.stone_mines_list, Map.stone_mines_limit)\r\n        #print("iron mines", Map.iron_mines_list, Map.iron_mines_limit)\r\n        #print("diamond mines", Map.diamond_mines_list, Map.diamond_mines_limit)\r\n\r\n    def draw(self, screen):\r\n        for i in range(len(self.tiles)):\r\n            for j in range(len(self.tiles[i])):\r\n                self.tiles[i][j].draw(screen)\r\n\r\n    def find_cell_by_pos(self, i_row, j_column):\r\n        print('i_row and j_column:', i_row, j_column, 'x and y:', self.x_dimension, self.y_dimension)\r\n        if(i_row >= 0 and i_row < self.y_dimension and j_column >= 0 and j_column < self.x_dimension):\r\n            return self.tiles[i_row][j_column]\r\n        return None\r\n\r\n    def find_cell_by_xy(self, screen_x, screen_y):\r\n        for row in self.tiles:\r\n            for cell in row:\r\n                if cell.check_screen_xy_in(screen_x, screen_y):\r\n                    return cell\r\n        return None\r\n\r\n    @staticmethod\r\n    def convert_screen_xy_to_map_pos(x, y):\r\n        cell_width = settings.cell_size[0]\r\n        cell_height = settings.cell_size[1]\r\n        x_margin = settings.cell_size[2]\r\n        y_margin = settings.cell_size[3]\r\n        x_offset = settings.board_dimension[2]\r\n        y_offset = settings.board_dimension[3]\r\n        map_pos_j_column = int((x - x_offset)/(cell_width + x_margin))\r\n        map_pos_i_row = int((y - y_offset)/(cell_height + y_margin))\r\n        return map_pos_i_row,map_pos_j_column	2019-02-21 05:35:30.780272+00	1
+22	this is map_cells.py\r\nimport pygame\r\nimport settings\r\nfrom random import randint\r\nfrom constants import CellType\r\nfrom constants import Color\r\nfrom constants import Tile_Color\r\n\r\n\r\nclass Cell:\r\n    def __init__(self, cell_type, i, j, x_offset, y_offset):\r\n        self.cell_width = settings.cell_size[0]\r\n        self.cell_height = settings.cell_size[1]\r\n        self.x_margin = settings.cell_size[2]\r\n        self.y_margin = settings.cell_size[3]\r\n        self.x_offset = x_offset\r\n        self.y_offset = y_offset\r\n\r\n        self.column_index = j\r\n        self.row_index = i\r\n        self.x_screen = self.column_index * (self.cell_width + self.x_margin) + self.x_offset\r\n        self.y_screen = self.row_index * (self.cell_height + self.y_margin) + self.y_offset\r\n        self.cell_type = cell_type\r\n        self.mine = None\r\n\r\n        if self.cell_type == CellType.GRASS:\r\n            self.altitude = 1\r\n            self.cross_energy = 1\r\n        elif self.cell_type == CellType.MOUNTAIN:\r\n            self.altitude = 2\r\n            self.cross_energy = 2\r\n        elif self.cell_type == CellType.ICE:\r\n            self.altitude = 1\r\n            self.cross_energy = 1\r\n        elif self.cell_type == CellType.FOREST:\r\n            self.altitude = 1\r\n            self.cross_energy = randint(1, 3)\r\n        elif self.cell_type == CellType.RIVER:\r\n            self.altitude = 0\r\n            self.cross_energy = 2\r\n        elif self.cell_type == CellType.WATER:\r\n            self.altitude = 0\r\n            self.cross_energy = 20\r\n\r\n    def check_pos_in(self, map_i, map_j):\r\n        return map_i == self.row_index and map_j == self.column_index\r\n\r\n    def draw(self, screen):\r\n        pygame.draw.rect(\r\n            screen,\r\n            Tile_Color[self.cell_type],\r\n            [self.x_screen, self.y_screen, self.cell_width, self.cell_height])\r\n        if self.mine is not None:\r\n            rect = [self.x_screen,self.y_screen,self.cell_width,self.cell_height]\r\n            self.mine.draw(rect)\r\n\r\n    def check_screen_xy_in(self, screen_x, screen_y):\r\n        if screen_x >= self.x_screen and screen_x < self.x_screen + self.cell_width:\r\n            if screen_y >= self.y_screen and screen_y < self.y_screen + self.cell_height:\r\n                return True\r\n        return False\r\n    def set_mine(self, mine):\r\n        self.mine = mine\r\n    @classmethod\r\n    def create_instance(cls, cell_type, i, j, x_offset, y_offset):\r\n        cell = cls(cell_type, i, j, x_offset, y_offset)\r\n        return cell	2019-02-21 05:36:10.153523+00	1
+23	today we fixed a bug\r\nthe board was spawning in the mines over each other. so it appeared to only have a few mines on the board.\r\nwe changed the chain of if statements in map.py into this\r\n        while len(self.stone_mines_list)+len(self.iron_mines_list) + len(self.diamond_mines_list) <\\\r\n                Map.stone_mines_limit + Map.iron_mines_limit + Map.diamond_mines_limit:\r\n            index_mountain = randint(0, len(self.mountains_without_mines_list)-1)\r\n            selected_mountain_cell = self.mountains_without_mines_list[index_mountain]\r\n            if selected_mountain_cell.has_mine() is not True:\r\n                if len(self.stone_mines_list) < Map.stone_mines_limit:\r\n                    mine = Mine.create_instance(selected_mountain_cell, MineType.STONE_MINE)\r\n                    if mine is not None:\r\n                        self.stone_mines_list.append(mine)\r\n                        self.mountains_without_mines_list.remove(selected_mountain_cell)\r\n                        print('made a mine', mine.mine_type, 'index', index_mountain)\r\n            if selected_mountain_cell.has_mine() is not True:\r\n                if len(self.iron_mines_list) < Map.iron_mines_limit:\r\n                    mine = Mine.create_instance(selected_mountain_cell, MineType.IRON_MINE)\r\n                    if mine is not None:\r\n                        self.iron_mines_list.append(mine)\r\n                        self.mountains_without_mines_list.remove(selected_mountain_cell)\r\n                        print('made a mine', mine.mine_type, 'index', index_mountain)\r\n            if selected_mountain_cell.has_mine() is not True:\r\n                if len(self.diamond_mines_list) < Map.diamond_mines_limit:\r\n                    mine = Mine.create_instance(selected_mountain_cell, MineType.DIAMOND_MINE)\r\n                    if mine is not None:\r\n                        self.diamond_mines_list.append(mine)\r\n                        self.mountains_without_mines_list.remove(selected_mountain_cell)\r\n                        print('made a mine', mine.mine_type, 'index', index_mountain)	2019-02-24 03:48:54.944514+00	1
+24	we also modified the settings.py to make the code more readable\r\nwe used dictionaries. \r\nex animals = {\r\n'dog': 'mammal'\r\n'ant': 'insect'\r\n }\r\n the first string is the keyword and the second is the object linked to the key.\r\nyou can use the key to access the object\r\n\r\n\r\nsettings.py\r\nimport constants\r\n#rgb\r\nbg_color = constants.Color.WHITE\r\n\r\n#caption for window\r\nscreen_name = "xuanwu game"\r\n\r\n#x, y\r\nscreen_size = (1200, 830)\r\n\r\n#width, height , x_margin, y_margin\r\ncell_size = {\r\n    'cell_width': 50,\r\n    'cell_height': 50,\r\n    'x_margin': 1,\r\n    'y_margin': 1,\r\n}#(50, 50, 1, 1)\r\n\r\n#i, j , i_margin, j_margin\r\nboard_dimension = {\r\n                'width': 20,\r\n                'height': 16,\r\n                'x_offset': 10,\r\n                'y_offset': 10,\r\n                }\r\n#mine numbers,\r\n#stone\r\nstone_mine_number = {\r\n                'low_value': 2,\r\n                'high_value': 5,\r\n                }\r\n#iron\r\niron_mine_number = {\r\n                'low_value': 2,\r\n                'high_value': 4,\r\n                }\r\n#diamond\r\ndiamond_mine_number = {\r\n                'low_value': 1,\r\n                'high_value': 2,\r\n                }	2019-02-24 03:54:25.681248+00	1
+25	after you modify settings modify everything that uses settings\r\nin all other files	2019-02-24 04:57:46.102633+00	1
+26	how too expose a classes private attributes : create function to expose them	2019-04-19 02:45:20.447509+00	2
+28	static_cast can change things from one data type to another	2019-04-19 02:45:23.702832+00	2
+27	pass down from base class to inherited class to make a tree	2019-04-19 02:45:22.967174+00	2
+29	global scope can be annoying when you name two variables the same name	2019-04-19 04:20:22.515076+00	2
+30	static reduces a variable's scope to file scope	2019-04-19 04:20:59.39867+00	2
+31	how a computer compiles a header file is that they use a CPP file and they treat them as the same thing.	2019-04-19 04:22:02.054918+00	2
+32	if there is an error use the call stack at the bottom left corner of the screen.	2019-04-20 00:49:36.575714+00	2
+33	open a sever first to test run a game using a server.\r\nopen a new page and then set the server to start up project then run the game	2019-04-20 00:52:25.709168+00	2
+34	check your code thoroughly even the smallest error can cause huge issues for you code.	2019-04-21 04:10:02.456981+00	2
+35	remember to update screen after render	2019-04-22 04:46:05.78232+00	2
+36	start from the file that is most closely related to the bug when debugging	2019-04-22 04:47:09.013115+00	2
+37	Designs focus on the reusability of the code. it splits the object into three parts. model view and controller	2019-04-24 03:07:44.938333+00	2
+38	type msc to remote control other computers. need IP address.	2019-05-08 04:22:10.908367+00	3
+39	define functions to accomplish jobs. if on class has o access another class's data use a function.	2019-05-13 03:30:41.423142+00	2
+40	there are two types of rendering. using surfaces and using textures. the texture one is better because it is easier to implement and use. the two are not comepatible	2019-05-15 04:00:14.071078+00	2
+41	std::rand() uses seed for pseudo randomness. use current time as seed. for believable pseudo random	2019-05-19 03:49:58.36575+00	2
+42	use constructors by defining values in them that will belong to the object created Afterwards. this will allow for more flexible design and made the code easier to maintain.	2019-05-24 04:55:35.983151+00	2
+43	use constructors by defining values in them that will belong to the object created Afterwards. this will allow for more flexible design and made the code easier to maintain.	2019-05-24 04:55:36.863011+00	2
+44	us ttf files to render words on a screen. the function will decide font and color. you can use the texture placement to decide the position of the words. release everything you used in reverse the order they were called in.	2019-05-29 05:09:36.509413+00	2
+45	ttf Font renders to a rectangle and will force the letters into the rectangle no matter what. also use the data model to process information and only use view to draw and calculate locations	2019-05-30 04:24:00.108396+00	2
+46	good design makes code easier to maintain. adding a function o generate mines made teh code much simpler.	2019-06-02 00:06:56.014629+00	2
+47	break is used to jump out of a loop. use this with care as it may leave the rest of the loop unrun and cause issues in the code.	2019-06-06 03:30:54.280106+00	2
+48	decide if something is inclusive or not before implementation this could couse trouble in the future	2019-06-10 04:53:25.204144+00	2
+49	for the base class of the design pattern command, put the constructor in the protected sections so only it's children can access it.	2019-06-13 04:36:13.688706+00	2
+50	use static to make a singleton. this will make it unique and global.	2019-06-13 04:36:59.194606+00	2
+51	there are four types of cast static_cast for casting parent: child const_cast for const:no const and interperate_cast for anything and dynamic_cast for run time casting.	2019-06-14 04:44:27.127968+00	2
+52	teh server is not in charge of rendering it is in charge of changing the data model so that the clients can take information from it.	2019-06-14 04:45:18.885723+00	2
+53	a good design make the code extremely easy to maintain. to the point of copying and pasting and replacing some words with another	2019-06-16 04:59:40.119436+00	2
+54	using a reference inside of a function can cause the reference to be deleted at the end of the function. use the move function to transfer ownership inside of a function before exiting.	2019-06-17 02:30:43.761151+00	2
+55	use the ip adress of a machine to access it as a server	2019-06-17 02:31:42.732073+00	2
+56	you can access a computer form a distance using ssd and the ip address. once open you can use the command prompt to access the computer and most of it's functions.	2019-06-19 04:02:26.942273+00	2
+57	there are two types of malware a virus and a worm a worm can get into your computer without you interaction with it	2019-06-19 04:54:38.858606+00	2
+58	there are two types of malware a virus and a worm a worm can get into your computer without you interaction with it	2019-06-19 04:54:40.015635+00	2
+59	the internet is a set of connections from servers to clients and routers.	2019-06-19 04:55:26.292117+00	2
+60	TCP provides secure package connection with three way handshake UDP just sends use UDP when package loss is acceptable	2019-06-24 04:30:31.872643+00	2
+61	a router is more secure than a switch. but a switch is easier to use so router for home environments and switch for others like work and public spaces.	2019-06-25 04:54:01.845292+00	2
+62	when using map "second" represents the values and "first" the key. and ou can access the value using the key .	2019-06-25 04:55:09.159924+00	2
+63	be careful when using flags because you might forget to change  their values after use.	2019-08-05 15:11:39.532613+00	2
+64	use remote desktop when testing multiplayer games	2019-08-05 15:12:18.708744+00	2
+65	just go through related code when debugging	2019-08-05 15:12:50.810002+00	2
+66	to render something you need the view to have a draw function and you need the draw function to be called	2019-08-06 16:33:23.031118+00	2
+67	you can use a language to simulate an equation	2019-08-07 15:08:42.538829+00	2
+68	most bugs are just one ore two lines of code	2019-08-08 14:51:38.53393+00	2
+69	design you code well in teh start to avoid major edits in the future	2019-08-08 14:52:03.769795+00	2
+70	divide and conquer a big and confusing problem	2019-08-09 16:13:09.171343+00	2
+71	java is for backend\r\nJavaScript is for frontend\r\nthere is no relationship between the two except that JavaScript was named after java.	2019-08-17 15:32:09.513182+00	4
+72	use springboot for java backends\r\nand react for JavaScript frontend	2019-08-17 15:32:11.752975+00	4
+73	JavaScript is a scripting language	2019-08-17 15:34:33.414078+00	4
+74	JavaScript mostly depends on added on trinkets and imports to function	2019-08-17 15:35:04.402201+00	4
+75	Java has similar syntax to CPP but nearly everything is an object	2019-08-17 15:37:10.91187+00	4
+\.
+
+
+--
+-- Data for Name: learning_logs_topic; Type: TABLE DATA; Schema: public; Owner: xuanwu_db_admin
+--
+
+COPY public.learning_logs_topic (id, text, date_added, owner_id) FROM stdin;
+1	Xuanwu Game	2019-02-09 17:43:21.705036+00	1
+2	CPP programming	2019-04-19 02:44:22.191344+00	5
+3	computer networking	2019-05-08 04:21:06.357832+00	5
+4	web development	2019-08-17 15:26:12.005493+00	5
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: xuanwu_db_admin
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: xuanwu_db_admin
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: xuanwu_db_admin
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 32, true);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: xuanwu_db_admin
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: xuanwu_db_admin
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 5, true);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: xuanwu_db_admin
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: xuanwu_db_admin
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, false);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: xuanwu_db_admin
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 8, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: xuanwu_db_admin
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 18, true);
+
+
+--
+-- Name: learning_logs_entry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: xuanwu_db_admin
+--
+
+SELECT pg_catalog.setval('public.learning_logs_entry_id_seq', 75, true);
+
+
+--
+-- Name: learning_logs_topic_id_seq; Type: SEQUENCE SET; Schema: public; Owner: xuanwu_db_admin
+--
+
+SELECT pg_catalog.setval('public.learning_logs_topic_id_seq', 4, true);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: learning_logs_entry learning_logs_entry_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.learning_logs_entry
+    ADD CONSTRAINT learning_logs_entry_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: learning_logs_topic learning_logs_topic_pkey; Type: CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.learning_logs_topic
+    ADD CONSTRAINT learning_logs_topic_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: learning_logs_entry_topic_id_83697a9a; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX learning_logs_entry_topic_id_83697a9a ON public.learning_logs_entry USING btree (topic_id);
+
+
+--
+-- Name: learning_logs_topic_owner_id_67ecce32; Type: INDEX; Schema: public; Owner: xuanwu_db_admin
+--
+
+CREATE INDEX learning_logs_topic_owner_id_67ecce32 ON public.learning_logs_topic USING btree (owner_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: learning_logs_entry learning_logs_entry_topic_id_83697a9a_fk_learning_logs_topic_id; Type: FK CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.learning_logs_entry
+    ADD CONSTRAINT learning_logs_entry_topic_id_83697a9a_fk_learning_logs_topic_id FOREIGN KEY (topic_id) REFERENCES public.learning_logs_topic(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: learning_logs_topic learning_logs_topic_owner_id_67ecce32_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: xuanwu_db_admin
+--
+
+ALTER TABLE ONLY public.learning_logs_topic
+    ADD CONSTRAINT learning_logs_topic_owner_id_67ecce32_fk_auth_user_id FOREIGN KEY (owner_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
